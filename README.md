@@ -29,7 +29,7 @@ The analysis utilizes descriptive data analysis and descriptive statistics, in a
 ## Results
 
 After preparing and examining the data, the baseline SARIMAX model was run and fit on all ten zipcodes. Subsequent model iterations were based on identified best parameters, which resulted in improved model performance for eight of ten zipcodes. Test data performed better than training data, which means that the models could be overfitting. The forecasts have wide confidence intervals, indicating that there is uncertainty regarding the results.
-
+![stpete_model_output](.images/stpete_model_output.png)
 ![stpete_forecast](./images/stpete_forecast.png)
 
 ## Recommendations
