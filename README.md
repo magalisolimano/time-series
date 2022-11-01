@@ -1,50 +1,52 @@
-# Phase 3 Project
+# Phase 4 Project: Time Series Forecasting
 
 Author: Magali Solimano
 
-Date: September 2022
+Date: October 2022
 
 ## Project Overview
 
-The Phase 3 Project applies machine learning modeling to classify borrowers' creditworthiness.
+The Phase 4 Project applies time series modeling to forecast housing prices.
 
-## Business Problem
+## Objectives
 
-A German bank has been struggling to correctly identify creditworthy borrowers. As a results, it is foregoing business opportunities to extend credit to good borrowers. It is also experiencing increasing credit losses from non-performing loans made to uncrediworthy borrowers.
+First-time homeowners are looking to invest in residential real estate with the goal of maximizing returns
+over a 5y period. The buyers would like to identify the top 5 best zip codes to invest in. 
 
-Goal: The bank has commissioned the development of a machine learning model that is trained to assess and predict the credit risk of borrowers (ie, identify which borrowers are creditworthy and which borrowers are not creditworthy.)
+This analysis will focus on zipcodes with below-median sales price and annual ROI (over previous 5 years)
+in the 90th percentile in the state of Florida, which exploratory data analysis shows has a high percentage
+of zipcodes that meet this criteria.
+
+![state_price_roi_rankings](./images/state_price_roi_barplotsa.png)
 
 ## The Data
 
-The project uses the German Credit dataset, sourced from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/South+German+Credit) and which can be found in  `german_credit.csv` in the data folder in this repo. The description of the column names can be found in the repo's Jupyter Notebook. The dataset has 1,000 records and 21 variables with continuous and categorical data.
+The project uses [Zillow Research data](https://www.zillow.com/research/data/), which can be found in  `zillow_data.csv` in the data folder in this repo. The description of the column names can be found in the repo's Jupyter Notebook. The dataset has nearly 15,000 zipcodes and 300 variables, of which more than 270 are monthly time series data.
 
 ## Methods
-The analysis utilizes descriptive data analysis and descriptive statistics, in addition to machine learning modeling.
+The analysis utilizes descriptive data analysis and descriptive statistics, in addition to time series modeling. Based on the selection criteria, ten Florida zipcodes were identified as candidates for modelling.
 
 ## Results
-The selected random forest with balanced class weights model predicts 81% of true creditworthy classifications. Compared to the baseline model, it also sharply reduced false positives (from 75% to 33%) and false negatives (from 32% to 19%). The model's precision score is 85% and f1-score is 83%.
 
-![cm_rf](./images/cm_rf.png)
+After preparing and examining the data, the baseline SARIMAX model was run and fit on all ten zipcodes. Subsequent model iterations were based on identified best parameters, which resulted in improved model performance for eight of ten zipcodes. Test data performed better than training data, which means that the models could be overfitting. The forecasts have wide confidence intervals, indicating that there is uncertainty regarding the results.
 
-The model determines the most important features to be related to checking account balance, amount of credit, duration of credit, age of borrower, and prior credit history.
-
-![feature_importance](./images/feature_importance.png)
+![stpete_forecast](./images/stpete_forecast.png)
 
 ## Recommendations
-The selected model indicates that the bank should make loans to borrowers who have:
-- some balance in their account
-- paid back credits on time
-- other existing credits outstanding
+Four zipcodes in Pompano Beach (Miami-Ft.Lauderdale metro area), Bradenton (North Port-Sarasota-Bradenton), St. Peterburg (Tampa metro area), and Egypt Lake Leto (Tampa metro area) are recommended 5-year investments. These zipcodes have sales prices
+below the state median of $226k, and forecasted average annual returns in the 15%-25% range.
 
-The bank should also make loans that have:
-- average balance of $3000
-- average duration of 19 months
+Pierson (Daytona Beach metro area) and Orlando zipcodes are not recommended investments--the models forecast lower returns 
+and a higher model error compared to the other zipcodes.
+
+![forecasted_returns](./images/forecasted_annual_returns.png)
 
 ## Next Steps
-Further analysis should seek to evaluate model performance against bank's existing, traditional credit risk assessment tools and processes. It should also seek to reduce model bias.  
+Since forecasts are based only on historical returns, model improvements should take into account other external factors (such as mortgage rates and economic indicators) and evaluate model performance to improve forecast quality. Furthermore, this analysis intentionally focused on the full historical dataset and did not focus exclusively on the post-housing crisis period;
+further model iterations could explore results using data from 2011 onwards. 
 
 ## More Information
-See the full analysis in the [Jupyter Notebook](https://github.com/magalisolimano/classification-of-credit/blob/master/notebook.ipynb) or review the [presentation](https://github.com/magalisolimano/classification-of-credit/blob/master/presentation_phase3.pdf). For additional information, contact Magali Solimano at magali.solimano@gmail.com.
+See the full analysis in the [Jupyter Notebook](https://github.com/magalisolimano/time-series/blob/main/notebook.ipynb) or review the [presentation](https://github.com/magalisolimano/time-series/blob/main/presentation_phase4.pdf). For additional information, contact Magali Solimano at magali.solimano@gmail.com.
 
 
 ## Repository Structure
@@ -53,5 +55,5 @@ See the full analysis in the [Jupyter Notebook](https://github.com/magalisoliman
 ├── images
 ├── README.md
 ├── notebook.ipynb
-└── presentation_phase3.pdf
+└── presentation_phase4.pdf
 ```
