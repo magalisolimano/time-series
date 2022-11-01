@@ -17,7 +17,7 @@ This analysis will focus on zipcodes with below-median sales price and annual RO
 in the 90th percentile in the state of Florida, which exploratory data analysis shows has a high percentage
 of zipcodes that meet this criteria.
 
-![state_price_roi_rankings](./images/state_price_roi_barplotsa.png)
+![state_price_roi_rankings](./images/state_price_roi_barplots.png)
 
 ## The Data
 
